@@ -9,12 +9,17 @@ import javax.validation.constraints.NotBlank;
 
 import com.example.application.data.AbstractEntity;
 
+import org.hibernate.annotations.Formula;
+
 @Entity
 public class Company extends AbstractEntity {
     @NotBlank
     private String name;
 
-    //Uma company pode ter um ou muitos contact
+    @Formula("(select count(c.id) from Contact c where c.company_id = id)")
+    private int employeeCount;
+
+    // Uma company pode ter um ou muitos contact
     @OneToMany(mappedBy = "company")
     private List<Contact> employees = new LinkedList<>();
 
@@ -33,4 +38,9 @@ public class Company extends AbstractEntity {
     public void setEmployees(List<Contact> employees) {
         this.employees = employees;
     }
+
+    public int getEmployeeCount() {
+        return employeeCount;
+    }
+
 }
