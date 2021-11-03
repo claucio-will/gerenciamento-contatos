@@ -25,8 +25,7 @@ public class ContactForm extends FormLayout {
     Button save = new Button("Salvar");
     Button delete = new Button("Excluir");
     Button close = new Button("Cancelar");
-
-
+    
     public ContactForm(List<Company> companies, List<Status> statuses) {
         addClassName("contact-form");
         company.setItems(companies);
@@ -48,4 +47,6 @@ public class ContactForm extends FormLayout {
 
         return new HorizontalLayout(save,delete,close);
     }
+
+ 
 }

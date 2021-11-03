@@ -14,6 +14,7 @@ public class Company extends AbstractEntity {
     @NotBlank
     private String name;
 
+    //Uma company pode ter um ou muitos contact
     @OneToMany(mappedBy = "company")
     private List<Contact> employees = new LinkedList<>();
 

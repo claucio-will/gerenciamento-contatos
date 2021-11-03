@@ -19,6 +19,11 @@ public class Contact extends AbstractEntity {
     @NotEmpty
     private String lastName = "";
 
+    /**
+     * Muitos contact pode ter apenas uma company
+     * Sendo assim muitas company pode ter muitos contact, mais o contact não pode ter mais de uma
+     * comapany
+     */
     @ManyToOne
     @JoinColumn(name = "company_id")
     @NotNull
