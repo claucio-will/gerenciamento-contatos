@@ -1,4 +1,6 @@
-package com.example.application.views.list;
+﻿package com.example.application.views.list;
+
+
 import com.example.application.data.entity.Contact;
 import com.example.application.data.service.CrmService;
 import com.example.application.views.ContactForm;
@@ -12,10 +14,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.Theme;
 
 @PageTitle("list")
-@Route(value="", layout = MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 public class ListView extends VerticalLayout {
 
     CrmService service;
@@ -34,10 +35,8 @@ public class ListView extends VerticalLayout {
 
         add(getToolbar(), getContent());
         updateList();
-        closeEditor(); 
+        closeEditor();
     }
-
-   
 
     private Component getContent() {
         HorizontalLayout content = new HorizontalLayout(grid, form);
@@ -51,9 +50,9 @@ public class ListView extends VerticalLayout {
     private void configureForm() {
         form = new ContactForm(service.findAllCompanies(), service.findAllStatus());
         form.setWidth("25em");
-        form.addListener(ContactForm.SaveEvent.class, this::saveContact); 
-        form.addListener(ContactForm.DeleteEvent.class, this::deleteContact); 
-        form.addListener(ContactForm.CloseEvent.class, e -> closeEditor()); 
+        form.addListener(ContactForm.SaveEvent.class, this::saveContact);
+        form.addListener(ContactForm.DeleteEvent.class, this::deleteContact);
+        form.addListener(ContactForm.CloseEvent.class, e -> closeEditor());
     }
 
     private void saveContact(ContactForm.SaveEvent event) {
@@ -61,7 +60,7 @@ public class ListView extends VerticalLayout {
         updateList();
         closeEditor();
     }
-    
+
     private void deleteContact(ContactForm.DeleteEvent event) {
         service.deleteContact(event.getContact());
         updateList();
@@ -80,14 +79,14 @@ public class ListView extends VerticalLayout {
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(event ->
-            editContact(event.getValue()));
+                editContact(event.getValue()));
     }
 
     private HorizontalLayout getToolbar() {
         filterText.setPlaceholder("Filtrar por nome");
         filterText.setClearButtonVisible(true);
         filterText.setValueChangeMode(ValueChangeMode.LAZY);
-        filterText.addValueChangeListener(e -> updateList()); 
+        filterText.addValueChangeListener(e -> updateList());
 
         Button addContactButton = new Button("Adicionar contato");
         addContactButton.addClickListener(click -> addContact());
@@ -98,7 +97,7 @@ public class ListView extends VerticalLayout {
         return toolbar;
     }
 
-    public void editContact(Contact contact) { 
+    public void editContact(Contact contact) {
         if (contact == null) {
             closeEditor();
         } else {
@@ -108,7 +107,7 @@ public class ListView extends VerticalLayout {
         }
     }
 
-    private void addContact() { 
+    private void addContact() {
         grid.asSingleSelect().clear();
         editContact(new Contact());
     }
