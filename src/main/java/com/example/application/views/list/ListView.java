@@ -1,4 +1,4 @@
-﻿package com.example.application.views.list;
+package com.example.application.views.list;
 
 
 import com.example.application.data.entity.Contact;
@@ -14,13 +14,15 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.context.annotation.Scope;
 
 @PageTitle("list")
 @Route(value = "", layout = MainLayout.class)
+@Scope("prototype")
+@org.springframework.stereotype.Component
 public class ListView extends VerticalLayout {
 
     CrmService service;
-
     Grid<Contact> grid = new Grid<>(Contact.class);
     TextField filterText = new TextField();
     ContactForm form;

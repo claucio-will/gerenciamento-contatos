@@ -11,14 +11,22 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 
 @Theme(themeFolder = "flowcrmtutorial")
+@PWA(
+    name = "VaadinCRM",
+    shortName = "CRM",
+    offlinePath="offline.html",
+    offlineResources = { "./images/offline.png"} 
+    
+)
 public class MainLayout extends AppLayout {
 
     private final SecurityService securityService;
 
-    public MainLayout( SecurityService securityService) {
+    public MainLayout(SecurityService securityService) {
         this.securityService = securityService;
         createHeader();
         createDrawer();
@@ -28,9 +36,9 @@ public class MainLayout extends AppLayout {
         H1 logo = new H1("Vaadin CRM");
         logo.addClassNames("text-l", "m-m");
 
-        Button logout = new Button("Log out", e -> securityService.logout()); 
+        Button logout = new Button("Log out", e -> securityService.logout());
 
-        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, logout); 
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, logout);
 
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         header.expand(logo);
@@ -38,8 +46,8 @@ public class MainLayout extends AppLayout {
         header.addClassNames("py-0", "px-m");
 
         addToNavbar(header);
-       
-    }   
+
+    }
 
     private void createDrawer() {
         // List é p nome da label que aparecerá na navigationbar, e listView é a classe

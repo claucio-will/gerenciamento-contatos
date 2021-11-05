@@ -27,14 +27,14 @@ public class ContactForm extends FormLayout {
 
     private Contact contact;
 
-    TextField firstName = new TextField("Nome");
-    TextField lastName = new TextField("Sobrenome");
-    EmailField email = new EmailField("Email");
+    public TextField firstName = new TextField("Nome");
+    public TextField lastName = new TextField("Sobrenome");
+    public EmailField email = new EmailField("Email");
 
-    ComboBox<Status> status = new ComboBox<>("Status");
-    ComboBox<Company> company = new ComboBox<>("Empresa");
+    public ComboBox<Status> status = new ComboBox<>("Status");
+    public ComboBox<Company> company = new ComboBox<>("Empresa");
 
-    Button save = new Button("Salvar");
+    public Button save = new Button("Salvar");
     Button delete = new Button("Excluir");
     Button close = new Button("Cancelar");
 
